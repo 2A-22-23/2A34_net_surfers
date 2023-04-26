@@ -1,3 +1,3 @@
 <?php
-    header('location:view/listReclamation.php');
+    header('location:/view/index.php');
 ?>

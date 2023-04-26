@@ -1,63 +1,61 @@
 <?php
 include "../connection.php";
-include "../Model/classe_reclamation.php";
-class CrudReclamation
+class Crudreponse
 {
-    public static function insert($Reclamation)
+    public static function insert($reponse)
     {
-        $sql = "INSERT INTO reclamation(username,firstname,lastname,email,phone_number,object,comment) 
-        VALUES (:username,:firstname,:lastname,:email,:phone_number,:object,:comment)";
+        $sql = "INSERT INTO reponse(rec_id, admin, content) VALUES (:rec_id, :admin, :content)";
         $db = connection::getConnexion();
+
         try {
             $req = $db->prepare($sql);
-            $req->bindValue(":username", $Reclamation->getUsername());
-            $req->bindValue(":firstname", $Reclamation->getFirstname());
-            $req->bindValue(":lastname", $Reclamation->getLastname());
-            $req->bindValue(":email", $Reclamation->getEmail());
-            $req->bindValue(":phone_number", $Reclamation->getPhoneNumber());
-            $req->bindValue(":object", $Reclamation->getObject());
-            $req->bindValue(":comment", $Reclamation->getComment());
+
+            $req->bindValue(":rec_id", $reponse->rec_id);
+            $req->bindValue(":admin", $reponse->admin);
+            $req->bindValue(":content", $reponse->content);
+
             $x = $req->execute();
             return $x == true ? null : "error";
         } catch (Exception $e) {
             return 'Erreur: ' . $e->getMessage();
         }
     }
-    public static function Update($Reclamation)
+    public static function Update($reponse)
     {
-        $sql = "UPDATE reclamation
-         SET `username`= :username, `firstname`= :firstname,`lastname`= :lastname, `email`= :email, `phone_number`= :phone_number,`object`= :object,`comment`= :comment where username=:username  ";
+        $sql = "UPDATE reponse  SET `rec_id`= :rec_id, `admin`= :admin ,`content`= :content where id=:id  ";
         $db = connection::getConnexion();
         try {
             $req = $db->prepare($sql);
-            $req->bindValue(":username", $Reclamation->getUsername());
-            $req->bindValue(":firstname", $Reclamation->getFirstname());
-            $req->bindValue(":lastname", $Reclamation->getLastname());
-            $req->bindValue(":email", $Reclamation->getEmail());
-            $req->bindValue(":phone_number", $Reclamation->getPhoneNumber());
-            $req->bindValue(":object", $Reclamation->getObject());
-            $req->bindValue(":comment", $Reclamation->getComment());
+
+            $req->bindValue(":rec_id", $reponse->rec_id);
+            $req->bindValue(":admin", $reponse->admin);
+            $req->bindValue(":content", $reponse->content);
+            $req->bindValue(":id", $reponse->id);
+
             $req->execute();
+            return null;
         } catch (Exception $e) {
-            echo 'Erreur: ' . $e->getMessage();
-        }
-    }
-    public static function Delete($username)
-    {
-        $sql = "DELETE FROM reclamation where username=:username";
-        $db = connection::getConnexion();
-        try {
-            $req = $db->prepare($sql);
-            $req->bindValue(':username', $username);
-            $req->execute();
-        } catch (Exception $e) {
-            echo 'Erreur: ' . $e->getMessage();
+            return 'Erreur: ' . $e->getMessage();
         }
     }
 
-    public static function Display_reclamations()
+    public static function Delete($id)
     {
-        $sql = "SELECT * FROM  reclamation ";
+        $sql = "DELETE FROM reponse where id=:id";
+        $db = connection::getConnexion();
+        try {
+            $req = $db->prepare($sql);
+            $req->bindValue(':id', $id);
+            $req->execute();
+            return null;
+        } catch (Exception $e) {
+            return 'Erreur: ' . $e->getMessage();
+        }
+    }
+
+    public static function FindAll()
+    {
+        $sql = "SELECT * FROM  reponse";
         $db = connection::getConnexion();
         try {
             $result = $db->query($sql);
@@ -66,10 +64,9 @@ class CrudReclamation
             die('Erreur: ' . $e->getMessage());
         }
     }
-
-    public static function searchByUsername($arg1)
+    public static function FindOne($id)
     {
-        $sql = "SELECT * FROM reclamation where username like  '%" . $arg1 . "%'";
+        $sql = "SELECT * FROM reponse where id=" . $id;
         $db = connection::getConnexion();
         try {
             $liste = $db->query($sql);
@@ -79,6 +76,17 @@ class CrudReclamation
         }
 
     }
-}
 
+    public static function FindByReclamationID($rec_id)
+    {
+        $sql = "SELECT * FROM  reponse WHERE rec_id=" . $rec_id;
+        $db = connection::getConnexion();
+        try {
+            $result = $db->query($sql);
+            return $result->fetchAll();
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
+        }
+    }
+}
 ?>
