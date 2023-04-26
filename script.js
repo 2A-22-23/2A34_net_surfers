@@ -1,53 +1,118 @@
-window.onload = function() {
-    const id_seance = document.getElementById("id_seance");
-    const date = document.getElementById("date");
-    const heure = document.getElementById("heure");
-    const nb_participant = document.getElementById("nb_participant");
-    const seance = document.getElementById("seance");
+function validateTitre() {
+    const titre = document.getElementById("titre");
+    const titreError = document.getElementById("titre-error");
+    if (titre.value.length < 3) {
+        titreError.innerHTML = "Titre doit avoir au moins 3 caractères";
+    } else {
+        titreError.innerHTML = "Correcte";
+    }
+}
 
-    const regexId = /^[0-9]{8}$/;
-    const regexDate = /^\d{4}-\d{2}-\d{2}$/;
-    const regexTime = /^\d{2}:\d{2}$/;
-    const regexNumber = /^[0-9]+$/;
-    const regexName = /^[a-zA-Z\s]+$/;
+function validateDate() {
+    const debut = document.getElementById("debut");
+    const fin = document.getElementById("fin");
+    const debutError = document.getElementById("debut-error");
+    constfinError = document.getElementById("fin-error");
+    if (debut.value > fin.value) {
+        debutError.innerHTML = "La date de début doit être antérieure à la date de fin";
+        finError.innerHTML = "La date de fin doit être postérieure à la date de début";
+    } else {
+        debutError.innerHTML = "Correcte";
+        finError.innerHTML = "Correcte";
+    }
+}
 
-    id_seance.addEventListener('input', function () {
-      if (!regexId.test(id_seance.value)) {
-        id_seance.setCustomValidity("L'identifiant de séance doit contenir 8 chiffres");
-      } else {
-        id_seance.setCustomValidity("");
-      }
-    });
+function validateAdresse() {
+    const adresse = document.getElementById("adresse");
+    const adresseError = document.getElementById("adresse-error");
+    if (adresse.value.length < 5) {
+    adresseError.innerHTML = "L'adresse doit avoir au moins 5 caractères";
+    } else {
+    adresseError.innerHTML = "Correcte";
+    }
+}
 
-    date.addEventListener('input', function () {
-      if (!regexDate.test(date.value)) {
-        date.setCustomValidity("La date doit être au format 'yyyy-mm-dd'");
-      } else {
-        date.setCustomValidity("");
-      }
-    });
+function validateNum() {
+    const num = document.getElementById("num");
+    const numError = document.getElementById("num-error");
+    if (num.value < 1) {
+    numError.innerHTML = "Le numéro doit être supérieur à 0";
+    } else {
+    numError.innerHTML = "Correcte";
+    }
+}
 
-    heure.addEventListener('input', function () {
-      if (!regexTime.test(heure.value)) {
-        heure.setCustomValidity("L'heure doit être au format 'hh:mm'");
-      } else {
-        heure.setCustomValidity("");
-      }
-    });
+function validateOrganisme() {
+    const organisme = document.getElementById("organisme");
+    const organismeError = document.getElementById("organisme-error");
+    if (organisme.value.length < 5) {
+    organismeError.innerHTML = "L'organisme doit avoir au moins 5 caractères";
+    } else {
+    organismeError.innerHTML = "Correcte";
+    }
+}
 
-    nb_participant.addEventListener('input', function () {
-      if (!regexNumber.test(nb_participant.value)) {
-        nb_participant.setCustomValidity("Le nombre de participants doit être un nombre entier positif");
-      } else {
-        nb_participant.setCustomValidity("");
-      }
-    });
+function validateGratuit() {
+    const gratuitOui = document.getElementById("gratuit-oui");
+    const montant = document.getElementById("montant");
+    const gratuitError = document.getElementById("gratuit-error");
+    if (gratuitOui.checked) {
+    montant.disabled = true;
+    gratuitError.innerHTML = "Correcte";
+    } else {
+    montant.disabled = false;
+    validateMontant();
+    }
+}
 
-    seance.addEventListener('input', function () {
-      if (!regexName.test(seance.value)) {
-        seance.setCustomValidity("Le nom de la séance doit contenir seulement des caractères alphabétiques");
-      } else {
-        seance.setCustomValidity("");
-      }
-    });
-};
+function validateMontant() {
+    const montant = document.getElementById("montant");
+    const montantError = document.getElementById("montant-error");
+    if (montant.value < 0) {
+    montantError.innerHTML = "Le montant doit être positif";
+    } else {
+    montantError.innerHTML = "Correcte";
+    }
+}
+
+function validateForm() {
+    const titre = document.getElementById("titre");
+    const debut = document.getElementById("debut");
+    const fin = document.getElementById("fin");
+    const adresse = document.getElementById("adresse");
+    const num = document.getElementById("num");
+    const organisme = document.getElementById("organisme");
+    const montant = document.getElementById("montant");
+    const gratuitOui = document.getElementById("gratuit-oui");
+    const titreError = document.getElementById("titre-error");
+    const debutError = document.getElementById("debut-error");
+    const finError = document.getElementById("fin-error");
+    const adresseError = document.getElementById("adresse-error");
+    const numError = document.getElementById("num-error");
+    const organismeError = document.getElementById("organisme-error");
+    const montantError = document.getElementById("montant-error");
+    const gratuitError = document.getElementById("gratuit-error"); 
+    validateTitre();
+    validateDate();
+    validateAdresse();
+    validateNum();
+    validateOrganisme();
+    validateGratuit();
+    validateMontant();
+
+    if (
+    titreError.innerHTML === "Correcte" &&
+    debutError.innerHTML === "Correcte" &&
+    finError.innerHTML === "Correcte" &&
+    adresseError.innerHTML === "Correcte" &&
+    numError.innerHTML === "Correcte" &&
+    organismeError.innerHTML === "Correcte" &&
+    montantError.innerHTML === "Correct"
+    ) {
+    alert("Le formulaire est valide");
+    return true;
+    } else {
+    alert("Le formulaire contient des erreurs");
+    return false;
+    }
+}
