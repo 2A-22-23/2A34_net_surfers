@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+body {
+    font-family: Rajdhani;
+    background-image: url("./assets/banner2.jpg");
+}
+
+.logo 
+{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    border-radius: 10px;
+    width: 150px; height: 120px; 
+    background-image: url("./assets/fitzone.png");
+}
+
+body .backLink {
+    margin: 30px 20px;
+    display: block;
+    color: white;
+}
+
+.wrapper {
+    /* max-width: 800px; */
+    margin: 0 auto;
+}
+
+.recList-wrapper {
+    margin: 0 80px;
+}
+
+
+.wrapper .cl-info {
+    display: flex;
+    justify-content: space-between;
+    align-items :center ; 
+    padding: 20px 40px;
+    background-color: #1a1a1a;
+    color: white;
+}
+
+.wrapper .cl-info button {
+    padding: 10px;
+    background: #3C91E6;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: black;
+    margin: 10px;
+}
+
+#AddNewRec,
+#updateRec {
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000000e0;
+}
+
+.shown {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.anr-content {
+    width: 450px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.anr-content .cls {
+    position: relative;
+    top: -30px;
+    left: 435px;
+    padding: 15px;
+    background: #EEC643;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.anr-content form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.anr-content form input {
+    padding: 10px 15px;
+    margin: 5px 0;
+    border-radius: 10px;
+}
+
+.anr-content form button {
+    padding: 15px 66px;
+    margin: 20px 0;
+    background: black;
+    color: whitesmoke;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+}
+
+.recList-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: coral;
+    padding: 10px;
+    margin-top: 10px;
+    color: white;
+}
+.recList-title h4{
+    flex: 1;
+} 
+.recList-title input {
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+#recList {
+    display: grid;
+    grid-template-areas: 'div div div';
+    background: #dbdbdb;
+}
+
+.card {
+    background: #333333;
+    margin: 10px;
+    color: whitesmoke;
+    padding: 10px;
+    border-radius: 10px;
+    justify-self: stretch;
+}
+
+.card h5 {
+    color: #bbb;
+}
+
+.card div {
+    padding-top: 18px;
+}
+
+.card button.up {
+    padding: 10px;
+    background: #3da91d;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+.card button.dl {
+    padding: 10px;
+    background: #d65555;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+.card button.vi {
+    padding: 10px;
+    background: #9555d6;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+
+.reponse {
+    color: whitesmoke;
+}
+
+.card-rp {
+    background-color: grey !important;
+}
+
+.reponse .cl-info {
+    display: flex;
+    justify-content: space-between;
+    align-items :center ; 
+    padding: 20px 40px;
+    background-color: #1a1a1a;
+    color: white;
+}
+
+.reponse .cl-info button {
+    padding: 10px;
+    background: #3C91E6;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: black;
+    margin: 10px;
+}
+
+
+#blk_lst .blk_item{
+    display: flex;
+    padding: 15px;
+    margin: 15px 0;
+    background-color: #ddd;
+
+}
