@@ -1,21 +1,13 @@
-<?php 
-    class config {
-        private static $pdo = NULL;
+<?php
+ob_start(); //Turns on output buffering 
 
-        public static function getConnexion() {
-            if (!isset(self::$pdo)) {
-                try{
-                    self::$pdo = new PDO('mysql:host=localhost;dbname=admin', 'root','',
-                    [
-                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-                    ]);
-                }
-                catch(Exception $e){
-                    die('Erreur: '.$e->getMessage());
-                }
-            }
-            return self::$pdo;
-        }
-    }
+$timezone = date_default_timezone_set("Europe/London");
+
+$con = mysqli_connect("localhost", "root", "", "feedback"); //Connection variable
+
+if(mysqli_connect_errno()) 
+{
+	echo "Failed to connect: " . mysqli_connect_errno();
+}
+
 ?>
